@@ -2,7 +2,7 @@ import nodemailer from "nodemailer";
 import User from "@/models/userModel";
 import bcryptjs from "bcryptjs";
 
-export const sendEmial = async ({ email, emailType, userId }: any) => {
+export const sendEmail = async ({ email, emailType, userId }: any) => {
   try {
     const hashedToken = await bcryptjs.hash(userId.toString(), 10);
 
@@ -22,8 +22,8 @@ export const sendEmial = async ({ email, emailType, userId }: any) => {
       host: "sandbox.smtp.mailtrap.io",
       port: 2525,
       auth: {
-        user: "25d65e2f4a4185",
-        pass: "883dc8113aeaea",
+        user: process.env.MAIL_USER,
+        pass: process.env.MAIL_PASS,
       },
     });
 
